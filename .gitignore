@@ -1,3 +1,4 @@
 terraform.tfvars
 *ssh*
 *tfstate*
+.terraform*

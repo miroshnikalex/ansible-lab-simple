@@ -1,8 +1,8 @@
-resource "aws_security_group" "allow_ssh" {
-  name		= "allow_ssh"
+resource "aws_security_group" "ssh_management" {
+  name		= "ssh_management"
   description	= "Allow SSH access to the resources"
   tags {
-       Name = "allow_ssh"
+       Name = "ssh_management"
        Group = "management"
        }
 
@@ -20,11 +20,11 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-resource "aws_security_group" "allow_web" {
-  name		= "allow_web"
+resource "aws_security_group" "web_management" {
+  name		= "web_management"
   description	= "Allow HTTP/HTTPS access to the WEB servers"
   tags {
-       Name = "allow_web"
+       Name = "web_management"
        Group = "Service"
        }
 

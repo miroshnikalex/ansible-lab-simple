@@ -11,8 +11,8 @@ resource "aws_instance" "web-server" {
     instance_type = "${var.AWS_INSTANCE_TYPE}"
     associate_public_ip_address = "true"
     vpc_security_group_ids = [
-      "${aws_security_group.allow_ssh.id}",
-      "${aws_security_group.allow_web.id}"
+      "${aws_security_group.ssh_management.id}",
+      "${aws_security_group.web_management.id}"
     ]
   tags {
     Name = "web-server-${count.index}"
@@ -32,11 +32,6 @@ resource "aws_instance" "web-server" {
   }
 }
 
-provider "aws" {
-  region = "${var.AWS_REGION}"
-  profile = "${var.AWS_PROFILE_NAME}"
-}
-
 resource "aws_instance" "db-server" {
     count = "${var.AWS_COUNT_DB}"
     availability_zone = "${element(var.AVZ[var.AWS_REGION], count.index)}"
@@ -45,7 +40,7 @@ resource "aws_instance" "db-server" {
     instance_type = "${var.AWS_INSTANCE_TYPE}"
     associate_public_ip_address = "true"
     vpc_security_group_ids = [
-      "${aws_security_group.allow_ssh.id}"
+      "${aws_security_group.ssh_management.id}"
     ]
   tags {
     Name = "db-server-${count.index}"
@@ -73,7 +68,7 @@ resource "aws_instance" "lb" {
     instance_type = "${var.AWS_INSTANCE_TYPE}"
     associate_public_ip_address = "true"
     vpc_security_group_ids = [
-      "${aws_security_group.allow_ssh.id}"
+      "${aws_security_group.ssh_management.id}"
     ]
   tags {
     Name = "Load_Balancer"
