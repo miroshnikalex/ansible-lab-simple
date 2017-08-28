@@ -120,7 +120,7 @@ resource "aws_instance" "db-server" {
 
 # Setting up LB servers
 
-resource "aws_instance" "web-server" {
+resource "aws_instance" "lb" {
     count = "${var.AWS_COUNT_LB}"
     availability_zone = "${element(var.AVZ[var.AWS_REGION], count.index)}"
     ami = "${lookup(var.AWS_AMI,var.AWS_REGION)}"
