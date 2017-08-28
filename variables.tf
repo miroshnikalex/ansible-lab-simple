@@ -35,3 +35,6 @@ variable "AWS_INSTANCE_TYPE" {
   default = "t2.micro"
 }
 variable "AWS_PROFILE_NAME" {}
+variable "ANSIBLE_PASSWORD" {
+  default = ""
+}
